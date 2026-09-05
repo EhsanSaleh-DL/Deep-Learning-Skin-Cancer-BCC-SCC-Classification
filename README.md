@@ -27,7 +27,7 @@ Below are the Receiver Operating Characteristic (ROC) curve and Confusion Matrix
 
 | ROC Curve | Confusion Matrix |
 | :---: | :---: |
-| ![ROC Curve](assets/roc_curve.png) | ![Confusion Matrix](assets/confusion_matrix.png) |
+| ![ROC Curve](assets/ROC.png) | ![Confusion Matrix](assets/Confusion_Matrix.png) |
 
 ---
 
@@ -37,7 +37,7 @@ To ensure clinical trustworthiness and verify that the deep neural network focus
 
 | Original Lesion Image | Heatmap Overlay |
 | :---: | :---: |
-| ![Original Lesion](assets/heatmap_sample.png) | *(Visual explanation showing regions of high focus)* |
+| ![Original Lesion](assets/ISIC_0054935.jpg) | ![Original Lesion](assets/ISIC_0054935_cam.jpg) |
 
 ---
 
