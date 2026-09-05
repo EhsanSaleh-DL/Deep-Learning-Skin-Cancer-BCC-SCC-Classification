@@ -2,9 +2,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Framework](https://img.shields.io/badge/Framework-PyTorch%20%7C%20TensorFlow-orange)](https://pytorch.org)
+[![Dataset](https://img.shields.io/badge/Dataset-ISIC2019-blue)](https://www.isic-archive.com/)
 [![Status](https://img.shields.io/badge/Status-Research%20in%20Progress-blue)](#)
 
-This repository contains the evaluation results, visual interpretability, and methodology overview for our research project on **automated classification of Basal Cell Carcinoma (BCC) and Squamous Cell Carcinoma (SCC)** using deep convolutional neural network (CNN) architectures.
+This repository contains the evaluation results, visual interpretability, and methodology overview for our research project on **automated classification of Basal Cell Carcinoma (BCC) and Squamous Cell Carcinoma (SCC)** using deep convolutional neural network (DCNN) architectures.
 
 > ⚠️ **Note:** The full source code and model checkpoints are currently restricted as the accompanying research paper is under peer review. The complete implementation will be made publicly available upon formal publication.
 
@@ -12,26 +13,49 @@ This repository contains the evaluation results, visual interpretability, and me
 
 ## 📌 Abstract & Overview
 
-Non-melanoma skin cancers, specifically **Basal Cell Carcinoma (BCC)** and **Squamous Cell Carcinoma (SCC)**, represent a major healthcare burden worldwide. Early and accurate automated diagnosis via deep learning can significantly reduce clinical workloads and assist dermatologists in diagnostic decision-making.
+Skin cancer is the most widespread type of cancer globally, with **Basal Cell Carcinoma (BCC)** and **Squamous Cell Carcinoma (SCC)** representing the most common non-melanoma skin cancer types. Accurate and timely diagnosis of these two lesions plays a vital role in effective treatment planning and improving patient survival rates.
 
-This project presents an end-to-end deep learning framework designed to classify medical skin lesion images into BCC and SCC categories. The pipeline addresses core challenges in medical computer vision, including severe class imbalance, fine-grained visual features between non-melanoma lesions, and model interpretability.
+While Deep Convolutional Neural Networks (DCNNs) offer powerful computer-aided diagnostic support using dermoscopic images, researchers face major hurdles due to **data scarcity** and severe **class imbalance** between BCC and SCC cases.
+
+To overcome these challenges, this study proposes a robust deep learning framework incorporating **transfer learning, data augmentation, Focal Loss, class weight balancing, and a custom model-checkpoint monitoring criterion** designed specifically to address class imbalance.
 
 ---
 
 ## 🛠️ Methodological Highlights
 
-* **Architectures:** Fine-tuning and comparative evaluation of deep CNN backbones (featuring **Xception** and custom feature extractors).
-* **Frameworks:** Implemented using **PyTorch** and **TensorFlow / Keras** for robust model training, preprocessing, and metrics computation.
-* **Class Imbalance Mitigation:** Integration of custom focal loss formulations, class-weight balancing, and specialized data augmentation routines.
-* **Validation Scheme:** Evaluated via a **Stratified 5-Fold Cross-Validation** strategy to guarantee robust and unbiased generalization.
+* **Dataset:** Dermoscopic image dataset derived from **ISIC 2019**.
+* **Evaluated Architectures:** Comparative investigation across multiple DCNN backbones:
+  * **Xception** (Optimal Model)
+  * **EfficientNetB0**
+  * **EfficientNetB1**
+  * **EfficientNetB2**
+* **Overcoming Data Scarcity:** Transfer learning initialization combined with specialized dermoscopic data augmentation.
+* **Class Imbalance Mitigation Strategies:**
+  * **Focal Loss Function:** Reduces relative loss for well-classified examples and focuses on hard/rare cases.
+  * **Data & Class Weighting:** Implemented a weighted sampling strategy favoring the minority class (**SCC**).
+  * **Custom Criterion Monitoring:** Model checkpointing guided by customized validation metric monitoring to prevent minority class degradation.
 
 ---
 
 ## 📊 Experimental Results
 
-Our optimal fine-tuned backbone demonstrated superior diagnostic performance across key quantitative evaluation metrics (Accuracy, Sensitivity, Specificity, AUC-ROC, and F1-Score).
+Among all evaluated DCNN architectures, the fine-tuned **Xception** model integrated with the proposed loss and weighting formulations achieved superior classification performance:
 
-### Performance Evaluation & ROC Curve
+| Metric | Performance (%) |
+| :--- | :---: |
+| **Accuracy** | **91.37%** |
+| **Specificity** | **98.50%** |
+| **Area Under Curve (AUC)** | **98.05%** |
+| **F1-Score** | **89.19%** |
+| **Recall (Sensitivity)** | **87.61%** |
+
+### 📈 Comparative Improvements
+Compared to existing literature on BCC and SCC classification, our proposed framework achieved notable metric gains:
+* **+1.51%** improvement in **Recall**
+* **+1.51%** improvement in **Specificity**
+* **+2.55%** improvement in **AUC**
+
+### Performance Evaluation & Visualizations
 Below are the Receiver Operating Characteristic (ROC) curve and Confusion Matrix for our best-performing model setup:
 
 | ROC Curve | Confusion Matrix |
@@ -64,6 +88,12 @@ We are actively expanding our research through real-world clinical data acquisit
 
 * **EfficientNetV3 Assessment:** Evaluation of advanced deep learning frameworks (such as **EfficientNetV3**) on both benchmark datasets and incoming clinical cohorts.
 * **Full Codebase Release:** End-to-end training, preprocessing scripts, and pre-trained model weights will be released post-publication.
+
+---
+
+## 🔑 Keywords
+
+`Dermoscopy` | `Deep Convolutional Neural Networks` | `Basal Cell Carcinoma` | `Squamous Cell Carcinoma` | `ISIC 2019` | `Class Imbalance` | `Focal Loss`
 
 ---
 
